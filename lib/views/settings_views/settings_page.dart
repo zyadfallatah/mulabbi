@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mulabbi/controllers/track_controller.dart';
 import 'package:mulabbi/core/colors.dart';
 import 'package:mulabbi/main.dart';
 import 'package:mulabbi/views/Introductory_screens/welcome_screen.dart';
@@ -46,12 +48,14 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Future<void> _signOut() async {
+    final trackController = Get.put(TrackController());
     try {
-      await Supabase.instance.client.auth.signOut();
+      await supabase.auth.signOut();
       await storage.remove("token");
-      Navigator.of(context).pushAndRemoveUntil(
+      await trackController.getUserCurrentStep();
+      Get.offUntil(
         MaterialPageRoute(builder: (context) => WelcomeScreen()),
-        (_) => false,
+        (route) => false,
       );
     } catch (e) {}
   }
