@@ -1,9 +1,5 @@
 # Mulabbi
 
-<p style="">
-<span style="color:red; font-size: 10px">V0.1</span>
-Inital draft, not the final product
-</p>
 an application to help pilgrims detects their nusk step by step
 
 ## What to expect from the the readme ?
@@ -17,8 +13,9 @@ an application to help pilgrims detects their nusk step by step
 | Motivation Behind the project  | Motivation [^1]   |
 | Core Features                  | Features [^2]     |
 | Technologies \*\*\*\*          | Technologies [^3] |
-| External Packages              | Soon...           |
-| Running applciation Guidelines | Guidelines [^4]   |
+| External Packages              | ExtPackages[^4]   |
+| Data Sources                   | Data Sources[^5]  |
+| Running applciation Guidelines | Guidelines [^6]   |
 
 ---
 
@@ -34,7 +31,8 @@ an application to help pilgrims detects their nusk step by step
 
 - **Centralized** most things the pilgrims need
 - **Modern Design** with emphsize on easy navigation
-- To be added...
+- **Security and Privacy** where it doesn't violate the pilgrims's privacy and manipulate his personal information
+- **Data Synchronization** ensures that the pilgrims's progress in his Nusks is maintained and provides him with a continuous and secure experience on all his devices 
 
 ---
 
@@ -64,11 +62,12 @@ an application to help pilgrims detects their nusk step by step
 
 | Technology      | Type                 | Purpose                                                                                                                                                                                   |
 | --------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Flutter         | Programming Language | The core of the project                                                                                                                                                                   |
-| Supabase        | Multipurpose         | <ol><li>Database</li><li>Api</li><li>Authentecation</li></ol>                                                                                                                             |
+| Flutter         | Programming Language | The core of the project                                       |
+| Supabase        | Multipurpose         | <ol><li>Database</li><li>Api</li><li>Authentecation</li></ol> |
 | Aladhan         | API                  | Getting prayers time [API Link](https://api.aladhan.com/v1/timingsByAddress/${date}?address=Makkah%2C+Saudi+Arabia&method=4&shafaq=general&latitudeAdjustmentMethod=1&calendarMethod=UAQ) |
-| To Be Continued | Soon...              | Soon...                                                                                                                                                                                   |
+| Getx            | Package              | <ol><li>State management</li><li>Routing</li><li>Storage</li><li>Data Synchronization</li></ol> |
 
+[^4]: ExternalPackages
 ## External Packages
 
 | Packege                     | Link                                                           | Purpose                                                       |
@@ -80,8 +79,10 @@ an application to help pilgrims detects their nusk step by step
 | getX                        | [source](https://pub.dev/packages/get)                         | State management                                              |
 | Dio                         | [source](https://pub.dev/packages/dio)                         | Networking                                                    |
 | flutter_local_notifications | [source](https://pub.dev/packages/flutter_local_notifications) | Notification                                                  |
-| to be continued             |                                                                | Soon...                                                       |
+| Youtube Player              | [source](https://pub.dev/packages/youtube_player_flutter)      | Play Live broadcast of Al Haramain in the app                 |
 
+
+[^5]: DataSources
 ## Data Sources
 
 | Data Source | Link                                                                                                                                                                 | Purpose              |
@@ -90,15 +91,19 @@ an application to help pilgrims detects their nusk step by step
 | Zad Content | [API Link](https://mulabbi-api.vercel.app/api/contents)                                                                                                              | Zad content          |
 | Adeiyah     | [API Link](https://68297d8b6075e87073a69d31.mockapi.io/duas) `There's local verison`                                                                                 | Adeiyah              |
 
-[^4]: Guidelines
-<img width="349" alt="Screenshot 1446-12-26 at 8 55 16 AM" src="https://github.com/user-attachments/assets/8c8f8eeb-4d1c-48d0-8a1d-2ed32ebea21b" />
+[^6]: Guidelines
+<p align="center">
+<img width="150" alt="Screen" src="WhatsApp Image 2025-06-23 at 11.33.24 PM (2).jpeg" style="margin-right: 20px;"/>
+<img width="150" alt="Screen" src="WhatsApp Image 2025-06-23 at 11.33.24 PM (1).jpeg" style="margin-right: 20px;" />
+<img width="150" alt="Screen" src="WhatsApp Image 2025-06-23 at 11.33.24 PM.jpeg" style="margin-right: 20px;"/>
+<img width="150" alt="Screen" src="WhatsApp Image 2025-06-23 at 11.33.25 PM (1).jpeg" style="margin-right: 20px;"/>
+<img width="150" alt="Screen" src="WhatsApp Image 2025-06-23 at 11.33.25 PM.jpeg" style="margin-right: 20px;" />
+</p>
 
-<img width="349" alt="Screenshot 1446-12-26 at 8 55 58 AM" src="https://github.com/user-attachments/assets/b39b0617-47be-4c1e-a762-73506948b44e" />
 
-<img width="349" alt="Screenshot 1446-12-26 at 8 56 24 AM" src="https://github.com/user-attachments/assets/5fbdc904-7fba-47e4-8ee0-c3a15f6d993a" />
+
 
 ## Running the app within your flutter
 
+<img src="Simulator Screen Recording - iPhone 16 Plus - 2025-06-23 at 23 (online-video-cutter.com).gif" width="300" />
 
-
-> Soon...
