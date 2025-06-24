@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mulabbi/controllers/track_controller.dart';
 import 'package:mulabbi/views/home_views/guest_home.dart';
 import 'package:mulabbi/views/settings_views/guest_settings%20page.dart';
 import 'package:mulabbi/views/settings_views/settings_page.dart';
@@ -34,13 +36,13 @@ class _MainScaffoldState extends State<MainScaffold> {
   }
 
   Widget _getPage(int index) {
+    final trackContoller = Get.put(TrackController());
+    trackContoller.getUserCurrentStep();
     switch (index) {
       case 0: // الإعدادات
-        return switch (widget.userType) {
-          UserType.guest => const GuestSettingsPage(),
-          UserType.user => const SettingsPage(),
-          UserType.onJourney => const SettingsPage(),
-        };
+        return trackContoller.currentUserId != null
+            ? SettingsPage()
+            : GuestSettingsPage();
       case 1: // زاد
         return ZadPageView();
       case 2: // المسار

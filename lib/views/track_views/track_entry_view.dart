@@ -8,14 +8,9 @@ import 'package:mulabbi/views/track_views/umrah_view.dart';
 import 'package:mulabbi/widgets/track_widgets/track_fallaback_not_authorized.dart';
 import 'package:mulabbi/widgets/track_widgets/track_fallback_non_active.dart';
 
-class TrackEntryView extends StatefulWidget {
+class TrackEntryView extends StatelessWidget {
   const TrackEntryView({super.key});
 
-  @override
-  State<TrackEntryView> createState() => _TrackEntryViewState();
-}
-
-class _TrackEntryViewState extends State<TrackEntryView> {
   @override
   Widget build(BuildContext context) {
     late final trackController = Get.put(TrackController());
@@ -42,6 +37,7 @@ class _TrackEntryViewState extends State<TrackEntryView> {
         ),
       ],
     ); // init state + Track checks everything
+
     return Scaffold(
       body: FutureBuilder(
         future: trackController.getUserCurrentStep(),

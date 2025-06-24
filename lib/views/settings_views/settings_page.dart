@@ -5,6 +5,7 @@ import 'package:mulabbi/core/colors.dart';
 import 'package:mulabbi/main.dart';
 import 'package:mulabbi/views/Introductory_screens/welcome_screen.dart';
 import 'package:mulabbi/views/settings_views/user_profile.dart';
+import 'package:mulabbi/views/shell/main_scaffold.dart';
 import 'package:mulabbi/widgets/settings_widgets/settings_row.dart';
 import 'package:mulabbi/widgets/settings_widgets/toggle_row.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -47,16 +48,16 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  Future<void> _signOut() async {
+  Future<void> _signOut(BuildContext context) async {
     final trackController = Get.put(TrackController());
     try {
-      await supabase.auth.signOut();
       await storage.remove("token");
-      await trackController.getUserCurrentStep();
-      Get.offUntil(
-        MaterialPageRoute(builder: (context) => WelcomeScreen()),
-        (route) => false,
-      );
+      await supabase.auth.signOut();
+      trackController.reset();
+      setState(() {
+        userData = null;
+      });
+      Get.to(() => WelcomeScreen());
     } catch (e) {}
   }
 
@@ -166,7 +167,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   SettingsRow(
                     title: 'تسجيل خروج',
                     icon: Icons.logout,
-                    onTap: _signOut,
+                    onTap: () => _signOut(context),
                   ),
                 ],
               ),

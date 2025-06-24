@@ -6,7 +6,6 @@ import 'package:mulabbi/views/home_views/articles/official_documents_view.dart';
 import 'package:mulabbi/views/home_views/articles/pilgrim_bag_view.dart';
 import 'package:mulabbi/views/shell/main_scaffold.dart';
 import 'package:mulabbi/views/track_views/choose_nusk.dart';
-import 'package:mulabbi/views/track_views/track_entry_view.dart';
 import 'package:mulabbi/widgets/home_widgets/build_prayer_bar.dart';
 import 'package:mulabbi/widgets/home_widgets/date_and_title_row.dart';
 import 'package:mulabbi/widgets/home_widgets/info_image_card.dart';
@@ -155,15 +154,26 @@ class _GuestHomeState extends State<GuestHome> {
                                 onTap: () async {
                                   await trackController.getUserCurrentStep();
                                   if (trackController.currentUserId == null) {
-                                    Get.to(
-                                      () => MainScaffold(
-                                        userType: UserType.guest,
-                                        index: 2,
+                                    Get.offUntil(
+                                      MaterialPageRoute(
+                                        builder:
+                                            (context) => MainScaffold(
+                                              userType: UserType.user,
+                                              index: 2,
+                                            ),
                                       ),
+                                      (route) => false,
                                     );
+
                                     return;
                                   }
-                                  Get.to(() => ChooseNuskView());
+                                  Get.offUntil(
+                                    MaterialPageRoute(
+                                      builder: (context) => ChooseNuskView(),
+                                    ),
+                                    (route) => false,
+                                  );
+                                  ;
                                 },
                                 child: StartCard(
                                   title: 'بدء الحج',

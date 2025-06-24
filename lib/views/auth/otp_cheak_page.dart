@@ -123,7 +123,6 @@ class OtpScreen extends StatelessWidget {
                       await controller.verifyOtp(email);
 
                       final res = await supabase.auth.getUser(id!);
-                      print(res);
                       if (res.user?.emailConfirmedAt != null) {
                         // Email is confirmed
                         await supabase.from('users').insert({

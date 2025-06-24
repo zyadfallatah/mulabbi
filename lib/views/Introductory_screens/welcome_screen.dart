@@ -49,7 +49,8 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(
+                        Navigator.push(
+                          context,
                           MaterialPageRoute(
                             builder:
                                 (_) => MainScaffold(userType: UserType.guest),

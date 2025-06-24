@@ -18,10 +18,19 @@ class TrackController extends GetxController {
 
   List<nusks_details> nusks = [];
 
+  void reset() {
+    currentUserId = null;
+    progressId = -1;
+    isTrackActive = false;
+    isPending = false;
+    type = "";
+    currentStep.value = 1;
+    stepInfo = null;
+  }
+
   Future<void> getUserCurrentStep() async {
     final user = await UserService.getCurrentUser();
     currentUserId = user?.id;
-    print(currentUserId);
     try {
       final doesUserExist = await supabase
           .from("users")
@@ -49,9 +58,7 @@ class TrackController extends GetxController {
 ''')
           .eq("user_id", currentUserId!)
           .or("completed_at.is.null");
-      // .order("user_nusuk", nullsFirst: false, ascending: false);
       final data = response.first;
-      print(data);
       if (data["completed_at"] != null || data["user_nusuk"] == null) {
         isTrackActive = false;
         throw Error();
@@ -71,9 +78,7 @@ class TrackController extends GetxController {
           .listen((List<Map<String, dynamic>> data) {
             currentStep.value = data.first["step_number"];
           });
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 
   Future<void> setNuskDetails(String type) async {
@@ -119,7 +124,13 @@ class TrackController extends GetxController {
 
     isPending = true;
     if (currentUserId == null) {
-      Get.to(MainScaffold(userType: UserType.guest, index: 2));
+      Get.offUntil(
+        MaterialPageRoute(
+          builder: (context) => MainScaffold(userType: UserType.user, index: 2),
+        ),
+        (route) => false,
+      );
+      ;
       return;
     }
 
@@ -141,8 +152,13 @@ class TrackController extends GetxController {
     progressId = progress.first["user_nusuk_pr_id"];
     type = nusuk.first["nusuk_id"]["nusuk_type"];
     currentStep.value = 1;
-
-    Get.to(() => MainScaffold(userType: UserType.user, index: 2));
+    isTrackActive = true;
+    Get.offUntil(
+      MaterialPageRoute(
+        builder: (context) => MainScaffold(userType: UserType.user, index: 2),
+      ),
+      (route) => false,
+    );
     isPending = false;
   }
 
@@ -157,12 +173,12 @@ class TrackController extends GetxController {
     type = "";
     isTrackActive = false;
     isPending = false;
-    Navigator.push(
+    Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
         builder: (context) => MainScaffold(userType: UserType.user),
       ),
+      (route) => false,
     );
-    // Get.to(() => MainScaffold(userType: UserType.user, index: 3));
   }
 }

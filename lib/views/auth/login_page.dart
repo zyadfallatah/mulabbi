@@ -151,7 +151,17 @@ class _LoginScreenState extends State<LoginScreen> {
                               response.session!.accessToken,
                             );
 
-                            Get.to(() => MainScaffold(userType: UserType.user));
+                            Get.offUntil(
+                              MaterialPageRoute(
+                                builder:
+                                    (context) => MainScaffold(
+                                      userType: UserType.user,
+                                      index: 3,
+                                    ),
+                              ),
+                              (route) => false,
+                            );
+                            ;
                           } on AuthException catch (e) {
                             showDialog(
                               context: context,
