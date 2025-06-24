@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:mulabbi/controllers/otp_controller.dart';
 import 'package:mulabbi/core/colors.dart';
+import 'package:mulabbi/main.dart';
 import 'package:mulabbi/widgets/auth_widgets/auth_custom.dart';
 import 'package:mulabbi/widgets/tools_widgets/button_custom.dart';
 import 'package:get/get.dart';
 
 class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key, required this.email});
+  const OtpScreen({
+    super.key,
+    required this.id,
+    required this.name,
+    required this.email,
+  });
 
+  final String? id;
+  final String name;
   final String email;
   static const focusColor = AppColorBrown.gradientBrown;
 
@@ -110,7 +118,24 @@ class OtpScreen extends StatelessWidget {
                 child: PrimaryButton(
                   text: "تحقق",
                   gradient: AppColorBrown.gradientBrown,
-                  onPressed: () => controller.verifyOtp(email),
+                  onPressed: () async {
+                    try {
+                      await controller.verifyOtp(email);
+
+                      final res = await supabase.auth.getUser(id!);
+                      print(res);
+                      if (res.user?.emailConfirmedAt != null) {
+                        // Email is confirmed
+                        await supabase.from('users').insert({
+                          'id': id,
+                          'name': name,
+                          'email': email,
+                        });
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
+                  },
                 ),
               ),
             ),

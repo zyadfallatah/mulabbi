@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final TextInputType keyboardType;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
     super.key,
@@ -14,6 +15,7 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     required this.controller,
+    this.validator,
   });
 
   @override
@@ -32,19 +34,21 @@ class CustomTextField extends StatelessWidget {
         const SizedBox(height: 10),
         SizedBox(
           width: 344,
-          height: 56,
-          child: TextField(
-            cursorColor: Color(0xFF7E5A3B),
+          child: TextFormField(
+            validator: validator,
+            cursorColor: const Color(0xFF7E5A3B),
             controller: controller,
             textAlign: TextAlign.right,
             obscureText: obscureText,
             keyboardType: keyboardType,
+            textDirection: TextDirection.rtl,
             decoration: InputDecoration(
               contentPadding: EdgeInsets.symmetric(
                 vertical: 16,
                 horizontal: 20,
               ),
               hintText: hint,
+              hintTextDirection: TextDirection.rtl,
               hintStyle: TextStyle(
                 fontFamily: 'Cairo',
                 fontSize: 16,

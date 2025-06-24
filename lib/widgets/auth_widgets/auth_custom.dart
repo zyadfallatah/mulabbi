@@ -31,7 +31,7 @@ class AuthContainer extends StatelessWidget {
           child: SingleChildScrollView(
             child: SizedBox(
               width: 360,
-              height: 599,
+              height: 650,
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
@@ -73,7 +73,6 @@ class AuthContainer extends StatelessWidget {
                     child: Center(
                       child: Container(
                         width: cardWidth ?? 388,
-                        height: cardHeight ?? 450,
                         padding: const EdgeInsets.all(24),
                         decoration: BoxDecoration(
                           border: Border.all(

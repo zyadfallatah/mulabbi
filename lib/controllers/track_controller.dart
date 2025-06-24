@@ -142,7 +142,6 @@ class TrackController extends GetxController {
     type = nusuk.first["nusuk_id"]["nusuk_type"];
     currentStep.value = 1;
 
-    Get.reloadAll();
     Get.to(() => MainScaffold(userType: UserType.user, index: 2));
     isPending = false;
   }

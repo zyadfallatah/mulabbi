@@ -13,6 +13,10 @@ void main() async {
     url: "https://mycjnevnidgeklceghsb.supabase.co",
   );
 
+  await storage.remove("tempId");
+  // await storage.remove("notConfirmedEmail");
+  // await storage.remove("notConfirmedEmailName");
+
   runApp(MyApp());
 }
 
