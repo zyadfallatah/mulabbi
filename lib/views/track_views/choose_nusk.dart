@@ -44,6 +44,7 @@ class ChooseNuskView extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         if (trackController.isPending) return;
+                        trackController.isPending = true;
                         trackController.registerNewTrack(1);
                       },
                       child: Container(
@@ -85,6 +86,7 @@ class ChooseNuskView extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         if (trackController.isPending) return;
+                        trackController.isPending = true;
                         trackController.registerNewTrack(2);
                       },
                       child: Container(
@@ -126,6 +128,7 @@ class ChooseNuskView extends StatelessWidget {
                     InkWell(
                       onTap: () {
                         if (trackController.isPending) return;
+                        trackController.isPending = true;
                         trackController.registerNewTrack(3);
                       },
                       child: Container(

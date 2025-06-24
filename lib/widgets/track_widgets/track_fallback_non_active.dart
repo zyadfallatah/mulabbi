@@ -75,7 +75,7 @@ class TrackFallbackNonActive extends StatelessWidget {
             InkWell(
               onTap: () async {
                 if (controller.isPending) return;
-
+                controller.isPending = true;
                 controller.registerNewTrack(4);
               },
               child: Container(

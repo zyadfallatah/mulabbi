@@ -138,6 +138,7 @@ class _GuestHomeState extends State<GuestHome> {
                                 onTap: () async {
                                   await trackController.getUserCurrentStep();
                                   if (trackController.isPending) return;
+                                  trackController.isPending = true;
                                   trackController.registerNewTrack(4);
                                 },
                                 child: StartCard(
