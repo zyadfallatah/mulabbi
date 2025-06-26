@@ -37,7 +37,7 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   Widget _getPage(int index) {
     final trackContoller = Get.put(TrackController());
-    trackContoller.getUserCurrentStep();
+    trackContoller.getUserCurrentStep(null);
     switch (index) {
       case 0: // الإعدادات
         return trackContoller.currentUserId != null

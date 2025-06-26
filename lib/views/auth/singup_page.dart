@@ -7,6 +7,7 @@ import 'package:mulabbi/views/auth/otp_cheak_page.dart';
 import 'package:mulabbi/views/auth/policy_page.dart';
 import 'package:mulabbi/widgets/auth_widgets/auth_custom.dart';
 import 'package:mulabbi/widgets/auth_widgets/textfield_custom.dart';
+import 'package:mulabbi/widgets/loader.dart';
 import 'package:mulabbi/widgets/tools_widgets/button_custom.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -217,33 +218,7 @@ class _RegisterScreenState extends State<SingupPage> {
                       showDialog(
                         context: context,
                         builder:
-                            (context) => Dialog(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: AppColorLight.greyGradient,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    spacing: 12,
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text("جاري تسجيل الحساب..."),
-                                      CircularProgressIndicator(
-                                        color:
-                                            AppColorBrown.gradientColors.first,
-                                        backgroundColor:
-                                            AppColorBrown
-                                                .angularGoldColors
-                                                .first,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
+                            (context) => Loader(text: 'جاري تسجيل الحساب...'),
                       );
                       try {
                         final res = await supabase.auth.signUp(

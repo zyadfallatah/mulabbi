@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mulabbi/controllers/track_controller.dart';
 import 'package:mulabbi/core/colors.dart';
 import 'package:mulabbi/views/track_views/choose_nusk.dart';
+import 'package:mulabbi/widgets/loader.dart';
 
 class TrackFallbackNonActive extends StatelessWidget {
   const TrackFallbackNonActive({super.key});
@@ -76,6 +77,11 @@ class TrackFallbackNonActive extends StatelessWidget {
               onTap: () async {
                 if (controller.isPending) return;
                 controller.isPending = true;
+                showDialog(
+                  context: context,
+                  builder:
+                      (context) => Loader(text: "جاري إنشاء رحلتك للعمرة..."),
+                );
                 controller.registerNewTrack(4);
               },
               child: Container(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mulabbi/controllers/track_controller.dart';
 import 'package:mulabbi/core/colors.dart';
+import 'package:mulabbi/widgets/loader.dart';
 
 class ChooseNuskView extends StatelessWidget {
   const ChooseNuskView({super.key});
@@ -45,6 +46,13 @@ class ChooseNuskView extends StatelessWidget {
                       onTap: () {
                         if (trackController.isPending) return;
                         trackController.isPending = true;
+                        showDialog(
+                          context: context,
+                          builder:
+                              (context) => Loader(
+                                text: "جاري إنشاء رحلتك لنسك الإفراد...",
+                              ),
+                        );
                         trackController.registerNewTrack(1);
                       },
                       child: Container(
@@ -87,6 +95,13 @@ class ChooseNuskView extends StatelessWidget {
                       onTap: () {
                         if (trackController.isPending) return;
                         trackController.isPending = true;
+                        showDialog(
+                          context: context,
+                          builder:
+                              (context) => Loader(
+                                text: "جاري إنشاء رحلتك لنسك القران...",
+                              ),
+                        );
                         trackController.registerNewTrack(2);
                       },
                       child: Container(
@@ -129,6 +144,13 @@ class ChooseNuskView extends StatelessWidget {
                       onTap: () {
                         if (trackController.isPending) return;
                         trackController.isPending = true;
+                        showDialog(
+                          context: context,
+                          builder:
+                              (context) => Loader(
+                                text: "جاري إنشاء رحلتك لنسك التمتع...",
+                              ),
+                        );
                         trackController.registerNewTrack(3);
                       },
                       child: Container(

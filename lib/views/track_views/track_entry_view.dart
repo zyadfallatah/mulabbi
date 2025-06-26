@@ -40,7 +40,7 @@ class TrackEntryView extends StatelessWidget {
 
     return Scaffold(
       body: FutureBuilder(
-        future: trackController.getUserCurrentStep(),
+        future: trackController.getUserCurrentStep(null),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(

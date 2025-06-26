@@ -6,6 +6,7 @@ import 'package:mulabbi/main.dart';
 import 'package:mulabbi/models/nusk_details.dart';
 import 'package:mulabbi/services/user_service.dart';
 import 'package:mulabbi/views/shell/main_scaffold.dart';
+import 'package:mulabbi/widgets/loader.dart';
 
 class TrackController extends GetxController {
   String? currentUserId;
@@ -28,7 +29,7 @@ class TrackController extends GetxController {
     stepInfo = null;
   }
 
-  Future<void> getUserCurrentStep() async {
+  Future<void> getUserCurrentStep(BuildContext? context) async {
     final user = await UserService.getCurrentUser();
     currentUserId = user?.id;
     try {
@@ -41,7 +42,12 @@ class TrackController extends GetxController {
       currentUserId = null;
       return;
     }
-
+    if (context != null) {
+      showDialog(
+        context: context,
+        builder: (context) => Loader(text: "يتم تحميل البيانات..."),
+      );
+    }
     try {
       final response = await supabase
           .from("user_nusuk_progress")

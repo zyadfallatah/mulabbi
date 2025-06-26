@@ -12,6 +12,7 @@ import 'package:mulabbi/widgets/home_widgets/info_image_card.dart';
 import 'package:mulabbi/widgets/home_widgets/journey_attachments.dart';
 import 'package:mulabbi/widgets/home_widgets/start_card.dart';
 import 'package:mulabbi/core/colors.dart';
+import 'package:mulabbi/widgets/loader.dart';
 import 'package:mulabbi/widgets/track_widgets/track_detail.dart';
 
 class GuestHome extends StatefulWidget {
@@ -119,7 +120,7 @@ class _GuestHomeState extends State<GuestHome> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: FutureBuilder(
-                    future: trackController.getUserCurrentStep(),
+                    future: trackController.getUserCurrentStep(null),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Center(
@@ -135,9 +136,18 @@ class _GuestHomeState extends State<GuestHome> {
                             Expanded(
                               child: InkWell(
                                 onTap: () async {
-                                  await trackController.getUserCurrentStep();
+                                  await trackController.getUserCurrentStep(
+                                    context,
+                                  );
                                   if (trackController.isPending) return;
                                   trackController.isPending = true;
+                                  showDialog(
+                                    context: context,
+                                    builder:
+                                        (context) => Loader(
+                                          text: "جاري إنشاء رحلتك للعمرة...",
+                                        ),
+                                  );
                                   trackController.registerNewTrack(4);
                                 },
                                 child: StartCard(
@@ -152,7 +162,9 @@ class _GuestHomeState extends State<GuestHome> {
                             Expanded(
                               child: InkWell(
                                 onTap: () async {
-                                  await trackController.getUserCurrentStep();
+                                  await trackController.getUserCurrentStep(
+                                    context,
+                                  );
                                   if (trackController.currentUserId == null) {
                                     Get.offUntil(
                                       MaterialPageRoute(
@@ -167,13 +179,7 @@ class _GuestHomeState extends State<GuestHome> {
 
                                     return;
                                   }
-                                  Get.offUntil(
-                                    MaterialPageRoute(
-                                      builder: (context) => ChooseNuskView(),
-                                    ),
-                                    (route) => false,
-                                  );
-                                  ;
+                                  Get.to(() => ChooseNuskView());
                                 },
                                 child: StartCard(
                                   title: 'بدء الحج',
