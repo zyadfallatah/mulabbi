@@ -66,6 +66,7 @@ dependencies:
   flutter_lints: ^5.0.0
   flutter_compass: ^0.8.1
   adhan_dart: ^1.1.2
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:

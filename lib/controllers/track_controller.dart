@@ -70,14 +70,6 @@ class TrackController extends GetxController {
       type = data["user_nusuk"]["nusuk_id"]["nusuk_type"];
       progressId = data["user_nusuk_pr_id"];
       await getStepInfo();
-      // REALTIME
-      supabase
-          .from('user_nusuk_progress')
-          .stream(primaryKey: ['user_nusuk_pr_id'])
-          .eq("user_nusuk_pr_id", data["user_nusuk_pr_id"])
-          .listen((List<Map<String, dynamic>> data) {
-            currentStep.value = data.first["step_number"];
-          });
     } catch (e) {}
   }
 
@@ -115,6 +107,8 @@ class TrackController extends GetxController {
             .from("user_nusuk_progress")
             .update({"step_number": getCurrentStep() + 1})
             .eq("user_nusuk_pr_id", progressId),
+
+        currentStep.value = getCurrentStep() + 1,
         isPending = false,
       },
   };

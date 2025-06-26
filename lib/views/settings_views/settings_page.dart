@@ -5,7 +5,6 @@ import 'package:mulabbi/core/colors.dart';
 import 'package:mulabbi/main.dart';
 import 'package:mulabbi/views/Introductory_screens/welcome_screen.dart';
 import 'package:mulabbi/views/settings_views/user_profile.dart';
-import 'package:mulabbi/views/shell/main_scaffold.dart';
 import 'package:mulabbi/widgets/settings_widgets/settings_row.dart';
 import 'package:mulabbi/widgets/settings_widgets/toggle_row.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
